@@ -43,7 +43,7 @@ Module.register("MMM-Radio", {
   },
 
   notificationReceived: function(notification, payload, sender) {
-    Log.log(this.name + " received a module notification: " + notification + " from sender: " + sender.name);
+    Log.log(this.name + " received a module notification: " + notification);
 		if (notification === "RADIO_CHANNEL_NEXT") {
       this.next();
 		} else if (notification === "RADIO_VOLUME_UP") {
