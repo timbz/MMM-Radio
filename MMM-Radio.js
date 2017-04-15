@@ -1,16 +1,14 @@
-/* global Module */
+/*
+ MMM-Radio
+*/
 
-/* Magic Mirror
- * Module: WeatherForecast
- *
- * By Michael Teeuw http://michaelteeuw.nl
- * MIT Licensed.
- */
+Module.register("MMM-Radio", {
 
-Module.register("internetradio", {
+ requiresVersion: "2.1.0",
 
   // Default module config.
   defaults: {
+    volumeStep: 0.1,
     stations: [{
       name: "OFF"
     }, {
@@ -27,12 +25,6 @@ Module.register("internetradio", {
     return ["internetradio.css"];
   },
 
-  // Define required translations.
-  getTranslations: function() {
-    // TODO
-    return false;
-  },
-
   // Define start sequence.
   start: function() {
     Log.info("Starting module: " + this.name);
@@ -40,7 +32,7 @@ Module.register("internetradio", {
     this.player = new Audio();
     this.stationIndex = 0;
 
-    this.play();
+    this.updatePlayer();
 
     var that = this;
     document.onkeypress = function(e) {
@@ -50,7 +42,18 @@ Module.register("internetradio", {
     };
   },
 
-  play: function() {
+  notificationReceived: function(notification, payload, sender) {
+    Log.log(this.name + " received a module notification: " + notification + " from sender: " + sender.name);
+		if (notification === "RADIO_CHANNEL_NEXT") {
+      this.next();
+		} else if (notification === "RADIO_VOLUME_UP") {
+      this.volumeUp();
+    } else if (notification === "RADIO_VOLUME_DOWN") {
+      this.volumeDown();
+    }
+	},
+
+  updatePlayer: function() {
     var station = this.config.stations[this.stationIndex];
     if (station.url) {
       this.player.src = station.url;
@@ -69,11 +72,26 @@ Module.register("internetradio", {
       this.stationIndex -= this.config.stations.length;
     }
     this.updateDom();
-    this.play();
+    this.updatePlayer();
   },
 
-  // Override dom generator.
-  getDom: function() {
+  volumeUp: function() {
+    var value = this.player.volume + this.config.volumeStep;
+    if (value > 1) {
+      value = 1
+    }
+    this.player.volume = value;
+  },
+
+  volumeDown: function() {
+    var value = this.player.volume - this.config.volumeStep;
+    if (value < 0) {
+      value = 0
+    }
+    this.player.volume = value;
+  },
+
+ getDom: function() {
     var table = document.createElement("table");
     table.className = "small";
 
