@@ -22,7 +22,7 @@ Module.register("MMM-Radio", {
 
   // Define required scripts.
   getStyles: function() {
-    return ["internetradio.css"];
+    return ["MMM-Radio.css"];
   },
 
   // Define start sequence.
