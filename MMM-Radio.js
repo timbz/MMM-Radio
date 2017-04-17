@@ -8,6 +8,7 @@ Module.register("MMM-Radio", {
 
   // Default module config.
   defaults: {
+    volumeDefault: 0.5,
     volumeStep: 0.1,
     stations: [{
       name: "OFF"
@@ -30,6 +31,7 @@ Module.register("MMM-Radio", {
     Log.info("Starting module: " + this.name);
 
     this.player = new Audio();
+    this.player.volume = this.config.volumeDefault;
     this.stationIndex = 0;
 
     this.updatePlayer();
