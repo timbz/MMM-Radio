@@ -141,7 +141,7 @@ Module.register("MMM-Radio", {
     var iconVolumeUp = document.createElement("span");
     iconVolumeUp.className = "fa fa-volume-up icon-volume-up";
 
-    volumeWrapper.appendChild(iconLeft);
+    volumeWrapper.appendChild(iconVolumeDown);
     volumeWrapper.appendChild(this.htmlVolume);
     volumeWrapper.appendChild(iconVolumeUp);
 
