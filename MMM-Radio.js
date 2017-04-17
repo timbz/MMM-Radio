@@ -83,6 +83,7 @@ Module.register("MMM-Radio", {
       value = 1
     }
     this.player.volume = value;
+    this.alertVolume();
   },
 
   volumeDown: function() {
@@ -91,9 +92,25 @@ Module.register("MMM-Radio", {
       value = 0
     }
     this.player.volume = value;
+    this.alertVolume();
   },
 
- getDom: function() {
+  alertVolume: function() {
+    var icon = "volume-down";
+    if (this.player.volume <= 0) {
+      icon = "volume-off";
+    } else if (this.player.volume >= 1) {
+      icon = "volume-up";
+    }
+    this.sendNotification("SHOW_ALERT", {
+      title: "Volume",
+      message: value * 100 + "%",
+      imageFA: icon,
+      timer: 2000
+    });
+  },
+
+  getDom: function() {
     var table = document.createElement("table");
     table.className = "small";
 
