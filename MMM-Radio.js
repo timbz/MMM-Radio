@@ -83,6 +83,7 @@ Module.register("MMM-Radio", {
       value = 1
     }
     this.player.volume = value;
+    this.updateDom();
     //this.alertVolume();
   },
 
@@ -92,6 +93,7 @@ Module.register("MMM-Radio", {
       value = 0
     }
     this.player.volume = value;
+    this.updateDom();
     //this.alertVolume();
   },
 
@@ -132,7 +134,7 @@ Module.register("MMM-Radio", {
     var volumeWrapper = document.createElement("div");
 
     var iconVolumeDown = document.createElement("span");
-    iconLeft.className = "fa fa-volume-down icon-volume-down";
+    iconVolumeDown.className = "fa fa-volume-down icon-volume-down";
     this.htmlVolume = document.createElement("progress");
     this.htmlVolume.max = 1;
     this.htmlVolume.value = this.player.volume;
