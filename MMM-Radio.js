@@ -115,18 +115,18 @@ Module.register("MMM-Radio", {
   getDom: function() {
     var wrapper = document.createElement("div");
 
-    var stationsWrapper = document.createElement("ul");
+    var stationsWrapper = document.createElement("div");
     stationsWrapper.className = "small stations";
 
     for (var i in this.config.stations) {
       var station = this.config.stations[i];
 
-      var li = document.createElement("li");
-      li.innerHTML = station.name;
-      stationsWrapper.appendChild(li);
+      var stationElement = document.createElement("div");
+      stationElement.innerHTML = station.name;
+      stationsWrapper.appendChild(stationElement);
 
       if (i == this.stationIndex) {
-        li.className = "selected";
+        stationElement.className = "selected";
       }
 
     }
