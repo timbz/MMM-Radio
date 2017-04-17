@@ -23,7 +23,7 @@ Module.register("MMM-Radio", {
 
   // Define required scripts.
   getStyles: function() {
-    return ["MMM-Radio.css"];
+    return ["MMM-Radio.css", "font-awesome.css"];
   },
 
   // Define start sequence.
@@ -103,8 +103,9 @@ Module.register("MMM-Radio", {
       icon = "volume-up";
     }
     this.sendNotification("SHOW_ALERT", {
+      type: "notification",
       title: "Volume",
-      message: value * 100 + "%",
+      message: Math.round(this.player.volume * 100) + "%",
       imageFA: icon,
       timer: 2000
     });
