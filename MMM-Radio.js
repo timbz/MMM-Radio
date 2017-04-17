@@ -83,7 +83,7 @@ Module.register("MMM-Radio", {
       value = 1
     }
     this.player.volume = value;
-    this.alertVolume();
+    //this.alertVolume();
   },
 
   volumeDown: function() {
@@ -92,7 +92,7 @@ Module.register("MMM-Radio", {
       value = 0
     }
     this.player.volume = value;
-    this.alertVolume();
+    //this.alertVolume();
   },
 
   alertVolume: function() {
@@ -103,7 +103,6 @@ Module.register("MMM-Radio", {
       icon = "volume-up";
     }
     this.sendNotification("SHOW_ALERT", {
-      type: "notification",
       title: "Volume",
       message: Math.round(this.player.volume * 100) + "%",
       imageFA: icon,
@@ -112,6 +111,8 @@ Module.register("MMM-Radio", {
   },
 
   getDom: function() {
+    var wrapper = document.createElement("div");
+
     var table = document.createElement("table");
     table.className = "small";
 
@@ -130,7 +131,25 @@ Module.register("MMM-Radio", {
       }
 
     }
-    return table;
+
+    var volumeWrapper = document.createElement("div");
+
+    var iconLeft = document.createElement("span");
+    iconLeft.className = "fa fa-volume-down";
+    this.htmlVolume = document.createElement("progress");
+    this.htmlVolume.max = 1;
+    this.value = this.player.volume;
+    var iconRight = document.createElement("span");
+    iconRight.className = "fa fa-volume-up";
+
+    volumeWrapper.appendChild(iconLeft);
+    volumeWrapper.appendChild(this.htmlVolume);
+    volumeWrapper.appendChild(iconRight);
+
+    wrapper.appendChild(table);
+    wrapper.appendChild(volumeWrapper);
+
+    return wrapper;
   },
 
 });
