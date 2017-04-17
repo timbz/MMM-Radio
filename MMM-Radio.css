@@ -25,6 +25,7 @@ span.icon-volume-down, span.icon-volume-up {
 progress[value] {
   -webkit-appearance: none;
   height: 10px;
+  width: 200px;
   margin-bottom: 12px
 }
 
