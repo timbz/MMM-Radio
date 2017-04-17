@@ -31,9 +31,9 @@ Module.register("MMM-Radio", {
     Log.info("Starting module: " + this.name);
 
     this.player = new Audio();
-    this.player.volume = this.config.volumeDefault;
     this.stationIndex = 0;
 
+    this.setVolume(this.config.volumeDefault);
     this.updatePlayer();
 
     var that = this;
@@ -78,23 +78,31 @@ Module.register("MMM-Radio", {
   },
 
   volumeUp: function() {
-    var value = this.player.volume + this.config.volumeStep;
+    var value = this.getVolume() + this.config.volumeStep;
     if (value > 1) {
       value = 1
     }
-    this.player.volume = value;
+    this.setVolume(value);
     this.updateDom();
     //this.alertVolume();
   },
 
   volumeDown: function() {
-    var value = this.player.volume - this.config.volumeStep;
+    var value = this.getVolume() - this.config.volumeStep;
     if (value < 0) {
       value = 0
     }
-    this.player.volume = value;
+    this.setVolume(value);
     this.updateDom();
     //this.alertVolume();
+  },
+
+  setVolume: function(value) {
+    this.player.volume = value * value;
+  },
+
+  getVolume: function() {
+    return Math.sqrt(this.player.volume);
   },
 
   alertVolume: function() {
@@ -135,14 +143,14 @@ Module.register("MMM-Radio", {
 
     var iconVolumeDown = document.createElement("span");
     iconVolumeDown.className = "fa fa-volume-down icon-volume-down";
-    this.htmlVolume = document.createElement("progress");
-    this.htmlVolume.max = 1;
-    this.htmlVolume.value = this.player.volume;
+    var volumeProgress = document.createElement("progress");
+    volumeProgress.max = 1;
+    volumeProgress.value = this.getVolume();
     var iconVolumeUp = document.createElement("span");
     iconVolumeUp.className = "fa fa-volume-up icon-volume-up";
 
     volumeWrapper.appendChild(iconVolumeDown);
-    volumeWrapper.appendChild(this.htmlVolume);
+    volumeWrapper.appendChild(volumeProgress);
     volumeWrapper.appendChild(iconVolumeUp);
 
     wrapper.appendChild(stationsWrapper);
