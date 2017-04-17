@@ -113,40 +113,37 @@ Module.register("MMM-Radio", {
   getDom: function() {
     var wrapper = document.createElement("div");
 
-    var table = document.createElement("table");
-    table.className = "small";
+    var stationsWrapper = document.createElement("ul");
+    stationsWrapper.className = "small stations";
 
     for (var i in this.config.stations) {
       var station = this.config.stations[i];
 
-      var row = document.createElement("tr");
-      table.appendChild(row);
-
-      var nameCell = document.createElement("td");
-      nameCell.innerHTML = station.name;
-      row.appendChild(nameCell);
+      var li = document.createElement("li");
+      li.innerHTML = station.name;
+      stationsWrapper.appendChild(li);
 
       if (i == this.stationIndex) {
-        nameCell.className = "bold"
+        li.className = "selected";
       }
 
     }
 
     var volumeWrapper = document.createElement("div");
 
-    var iconLeft = document.createElement("span");
-    iconLeft.className = "fa fa-volume-down";
+    var iconVolumeDown = document.createElement("span");
+    iconLeft.className = "fa fa-volume-down icon-volume-down";
     this.htmlVolume = document.createElement("progress");
     this.htmlVolume.max = 1;
-    this.value = this.player.volume;
-    var iconRight = document.createElement("span");
-    iconRight.className = "fa fa-volume-up";
+    this.htmlVolume.value = this.player.volume;
+    var iconVolumeUp = document.createElement("span");
+    iconVolumeUp.className = "fa fa-volume-up icon-volume-up";
 
     volumeWrapper.appendChild(iconLeft);
     volumeWrapper.appendChild(this.htmlVolume);
-    volumeWrapper.appendChild(iconRight);
+    volumeWrapper.appendChild(iconVolumeUp);
 
-    wrapper.appendChild(table);
+    wrapper.appendChild(stationsWrapper);
     wrapper.appendChild(volumeWrapper);
 
     return wrapper;
