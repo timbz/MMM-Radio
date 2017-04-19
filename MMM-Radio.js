@@ -32,6 +32,7 @@ Module.register("MMM-Radio", {
 
     this.player = new Audio();
     this.stationIndex = 0;
+    this.playing = false;
 
     this.setVolume(this.config.volumeDefault);
     this.updatePlayer();
@@ -61,10 +62,18 @@ Module.register("MMM-Radio", {
       this.player.src = station.url;
       this.player.load();
       this.player.play();
+      if (!this.playing) {
+        this.playing = true;
+        this.sendSocketNotification("RADIO_PLAYING", {});
+      }
     } else {
       this.player.src = "";
       this.player.load();
       this.player.pause();
+      if (this.playing) {
+        this.playing = false;
+        this.sendSocketNotification("RADIO_STOPPED", {});
+      }
     }
   },
 
@@ -84,7 +93,6 @@ Module.register("MMM-Radio", {
     }
     this.setVolume(value);
     this.updateDom();
-    //this.alertVolume();
   },
 
   volumeDown: function() {
@@ -94,7 +102,6 @@ Module.register("MMM-Radio", {
     }
     this.setVolume(value);
     this.updateDom();
-    //this.alertVolume();
   },
 
   setVolume: function(value) {
@@ -103,21 +110,6 @@ Module.register("MMM-Radio", {
 
   getVolume: function() {
     return Math.sqrt(this.player.volume);
-  },
-
-  alertVolume: function() {
-    var icon = "volume-down";
-    if (this.player.volume <= 0) {
-      icon = "volume-off";
-    } else if (this.player.volume >= 1) {
-      icon = "volume-up";
-    }
-    this.sendNotification("SHOW_ALERT", {
-      title: "Volume",
-      message: Math.round(this.player.volume * 100) + "%",
-      imageFA: icon,
-      timer: 2000
-    });
   },
 
   getDom: function() {

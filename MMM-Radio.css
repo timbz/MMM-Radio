@@ -1,5 +1,5 @@
 .module.MMM-Radio {
-    width: 300px;
+    width: 250px;
 }
 
 div.stations {
@@ -25,7 +25,7 @@ span.icon-volume-down, span.icon-volume-up {
 progress[value] {
   -webkit-appearance: none;
   height: 10px;
-  width: 200px;
+  width: 159px;
   margin-bottom: 12px
 }
 
