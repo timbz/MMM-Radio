@@ -64,7 +64,7 @@ Module.register("MMM-Radio", {
       this.player.play();
       if (!this.playing) {
         this.playing = true;
-        this.sendSocketNotification("RADIO_PLAYING", {});
+        this.sendNotification("RADIO_PLAYING", {});
       }
     } else {
       this.player.src = "";
@@ -72,7 +72,7 @@ Module.register("MMM-Radio", {
       this.player.pause();
       if (this.playing) {
         this.playing = false;
-        this.sendSocketNotification("RADIO_STOPPED", {});
+        this.sendNotification("RADIO_STOPPED", {});
       }
     }
   },
