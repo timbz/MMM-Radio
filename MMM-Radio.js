@@ -11,7 +11,7 @@ Module.register("MMM-Radio", {
     volumeDefault: 0.5,
     volumeStep: 0.1,
     stations: [{
-      name: "OFF"
+      name: "Radio ausgeschaltet"
     }, {
       name: "FM4",
       url: "http://mp3stream1.apasf.apa.at:8000/;stream.mp3"
@@ -132,6 +132,7 @@ Module.register("MMM-Radio", {
     }
 
     var volumeWrapper = document.createElement("div");
+    volumeWrapper.className = "small volume";
 
     var iconVolumeDown = document.createElement("span");
     iconVolumeDown.className = "fa fa-volume-down icon-volume-down";

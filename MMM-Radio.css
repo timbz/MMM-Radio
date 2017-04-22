@@ -1,21 +1,23 @@
 .module.MMM-Radio {
-    width: 250px;
+    border-top: 1px solid white;
+    padding-top: 30px;
 }
 
 div.stations {
-   border: 1px solid white;
-   border-radius: 10px; 
-   overflow: hidden
+   float: left;
+   width: 300px;
+}
+
+.div.volume {
+  float: left;
 }
 
 div.stations > div {
   padding: 10px 10px
 }
 
-div.stations > .selected {
-   background-color: white;
-   color: black;
-  font-weight: bold;
+div.stations > :not(.selected) {
+  display: none;
 }
 
 span.icon-volume-down, span.icon-volume-up {
