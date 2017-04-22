@@ -6,6 +6,7 @@
 div.stations {
    float: left;
    width: 400px;
+   line-height: 23px;
 }
 
 div.volume {
@@ -21,7 +22,7 @@ div.stations > :not(.selected) {
 }
 
 span.icon-volume-down, span.icon-volume-up {
-    padding: 10px;
+    padding: 0px 10px;
 }
 
 progress[value] {
