@@ -132,7 +132,7 @@ Module.register("MMM-Radio", {
     }
 
     var volumeWrapper = document.createElement("div");
-    volumeWrapper.className = "small volume";
+    volumeWrapper.className = "volume";
 
     var iconVolumeDown = document.createElement("span");
     iconVolumeDown.className = "fa fa-volume-down icon-volume-down";
