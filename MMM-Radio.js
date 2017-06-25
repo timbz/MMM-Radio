@@ -17,7 +17,7 @@ Module.register("MMM-Radio", {
       url: "http://mp3stream1.apasf.apa.at:8000/;stream.mp3"
     }, {
       name: "Deutschlandradio Kultur ",
-      url: "http://stream.dradio.de/7/536/142684/v1/gnl.akacast.akamaistream.net/dradio_mp3_dkultur_s"
+      url: "http://st02.dlf.de/dlf/02/128/mp3/stream.mp3"
     }]
   },
 
