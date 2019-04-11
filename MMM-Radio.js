@@ -16,8 +16,8 @@ Module.register("MMM-Radio", {
       name: "FM4",
       url: "http://mp3stream1.apasf.apa.at:8000/;stream.mp3"
     }, {
-      name: "Deutschlandradio Kultur ",
-      url: "http://st02.dlf.de/dlf/02/128/mp3/stream.mp3"
+      name: "917XFM",
+      url: "http://mp3channels.rockantenne.hamburg/917xfm"
     }]
   },
 
